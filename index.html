@@ -3,7 +3,7 @@
 <head>
 	<title>Dice Maker</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<link rel="stylesheet" type="text/css" href="assets/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
 
@@ -19,75 +19,50 @@
 			<button v-on:click="viewMode='table'" v-bind:class="{'active': viewMode=='table'}">Table Mode</button>
 		</div>
 		<div>
-			<button v-on:click="newDie();">Add Die</button>
-			<button v-on:click="addD6();">Add D6</button>
+			<button v-on:click="roller.newDie();">Add Die</button>
+			<button v-on:click="roller.addD6();">Add D6</button>
 		</div>
-		<div class="diceBox" v-if="viewMode=='box'" v-for="die in dice">
-			<input v-model="die.name" class="name" type="text" size="8"
-					onfocus="app.adjustInputSize(this)" 
-					oninput="app.adjustInputSize(this)">
-			<div>
-				<button v-on:click="removeDie(dice,die);">Delete Dice</button>
-				<button v-on:click="die.newSide();">Add Side</button>
-			</div>
-			<div v-for="side in die.sides" class="dieBox">
-				<input v-model="side.value" class="value" type="text" size="3" 
-					onfocus="app.adjustInputSize(this)" 
-					oninput="app.adjustInputSize(this)">
-				<input v-model="side.weight" class="weight" type="text" size="3" 
-					onchange="if(isNaN(this.value) || this.value < 1){this.value='1'};" 
-					onfocus="app.adjustInputSize(this)" 
-					oninput="app.adjustInputSize(this)">
-				<div>
-					<button v-on:click="moveArrayIndex(die.sides,die.sides.indexOf(side),die.sides.indexOf(side)-1)">&larr;</button>
-					<button class="delete" v-on:click="die.removeSide(side)">&times;</button>
-					<button v-on:click="moveArrayIndex(die.sides,die.sides.indexOf(side),die.sides.indexOf(side)+1)">&rarr;</button>
-				</div>
-			</div>
+		<div v-if="viewMode=='box'">
+			<die-box v-for="die in roller.dice"
+				v-bind:roller="roller"
+				v-bind:dice="roller.dice"
+				v-bind:die="die"
+				v-bind:index="roller.dice.indexOf(die)">
+			</die-box>
 		</div>
-		<table class="diceTable" v-if="viewMode=='table'" v-for="die in dice">
-			<tr>
-				<td colspan="2"><input v-model="die.name" class="name" type="text"></td>
-				<td><button v-on:click="moveArrayIndex(dice,dice.indexOf(die),dice.indexOf(die)-1)">&uarr;</button></td>
-				<td><button v-on:click="moveArrayIndex(dice,dice.indexOf(die),dice.indexOf(die)+1)">&darr;</button></td>
-				<td><button v-on:click="removeDie(dice, die);">&times;</button></td>
-			</tr>
-			<tr><td colspan="5"><button v-on:click="die.newSide();">Add Side</button></td></tr>
-			<tr v-for="side in die.sides" class="dieRow">
-				<td><input v-model="side.value" class="value" type="text"></td>
-				<td class="weight-td"><input v-model="side.weight" class="weight" type="text"></td>
-				<td><button v-on:click="moveArrayIndex(die.sides,die.sides.indexOf(side),die.sides.indexOf(side)-1)">&uarr;</button></td>
-				<td><button v-on:click="moveArrayIndex(die.sides,die.sides.indexOf(side),die.sides.indexOf(side)+1)">&darr;</button></td>
-				<td><button class="delete" v-on:click="die.removeSide(side)">&times;</button></td>
-			</tr>
-		</table>
+		<div v-if="viewMode=='table'">
+			<die-table v-for="die in roller.dice"
+				v-bind:roller="roller"
+				v-bind:dice="roller.dice"
+				v-bind:die="die"
+				v-bind:index="roller.dice.indexOf(die)">
+			</die-table>
+		</div>
 	</div>
 
 	<div id="roll" v-if="mode=='roll'">
 		<div>
-			<button v-on:click="rollDice(dice, count, history)">Roll All Dice</button>
-			<button v-on:click="clearHistory(dice)">Clear History</button>
+			<button v-on:click="roller.rollDice()">Roll All Dice</button>
+			<button v-on:click="roller.clearHistory()">Clear History</button>
 		</div>
 		<div class="rollContainer">
-			<div class="rollBox" v-for="die in dice">
-				<div class="name">{{die.name}}</div>
-				<button v-on:click="die.rollDie()">Roll</button>
-				<div class="history">
-					<div v-for="record in die.history.slice().reverse()">
-						<span class="count">{{record.count}}:</span> {{record.roll}}</div>
-				</div>
-			</div>
+			<die-roll 
+				v-for="die in roller.dice"
+				v-bind:die="die">
+			</die-roll>
 		</div>
 		<div class="history">
-			<div v-for="record in history.slice().reverse()">
-				<span class="count">{{record.count}}:</span> {{record.roll}} <span v-if="dice.length > 1 && record.total>0">({{record.total}})</span>
+			<div v-for="record in roller.history.slice().reverse()">
+				<span class="count">{{record.count}}:</span> {{record.roll}} <span v-if="roller.dice.length > 1 && record.total>0">({{record.total}})</span>
 			</div>
 		</div>
 	</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-<script src="assets/app.js"></script>
+<script src="assets/js/classes.js"></script>
+<script src="assets/js/components.js"></script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>
 
