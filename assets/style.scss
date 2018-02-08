@@ -1,0 +1,152 @@
+$sans-font: Calibri, Carlito, CarlitoRegular, "Trebuchet MS", Tahoma, Arial, Helvetica, sans-serif;
+$mono-font: Consolas, Inconsolata, Monaco, "Lucida Console", "DejaVu Sans Mono", monospace;
+$serif-font: Cambria, Caladea, CaladeaBold, Georgia, serif;
+
+$pad: 0.5em;
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, pre, a, abbr, code, img, small, strike, var, b, u, i, center, ol, ul, li, fieldset, form, input, button, textarea, label, legend, table, tbody, tfoot, thead, tr, th, td, footer, header, hgroup {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		font-size: 2vw;
+		font: inherit;
+		vertical-align: baseline;
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-webkit-appearance: none;
+	}
+body {line-height: 1; margin: $pad;}
+ol, ul {list-style: none;}
+table {border-collapse: collapse; border-spacing: 0;}
+a, a:link, a:visited, a:hover, a:active {text-decoration: none;	color: inherit;}
+b {font-weight: bold;}
+i {font-style: italic;}
+
+button {
+	padding: $pad $pad*2;
+	background-color: lightgrey;
+	border-radius: 100px;
+	&:hover {
+		background-color: #eee;
+	}
+	&.active {
+		background-color: steelblue;
+		color: white;
+		&:hover {
+			background-color: lightsteelblue;
+		}
+	}
+}
+.nav button {border-radius: 0;}
+#setup {
+	div, table {margin: $pad 0;}
+	.diceBox {
+		text-align: center;
+		border: solid 1px grey;
+		border-radius: 5px;
+		padding: $pad;
+		input {
+			display: block;
+			max-width: 100%;
+			text-align: center;
+			padding: 5px;
+			margin: 5px auto;
+			border: 1px solid lightgrey;
+			word-wrap: break-word;
+			word-break: break-all;
+		}
+		.name {
+			display: block;
+			font-weight: bold;
+		}
+		.roll {
+			font-weight: bold;
+			font-size: 200%;
+		}
+		.history {
+			color: grey;
+		}
+		.dieBox {
+			display: inline-block;
+			border: 1px solid black;
+			padding: $pad $pad*2;
+			margin: $pad;
+			text-align: center;
+			.value {
+				font-weight: bold;
+				font-size: 200%;
+			}
+			.weight {
+				color: grey;
+			}
+			button {
+				padding: 3px;
+			}
+		}
+	}
+	.diceTable {
+		border: solid 1px grey;
+		border-radius: 5px;
+		padding: $pad;
+		input {
+			height: 35px;
+			width: 100%;
+			padding: 5px;
+			border: 1px solid lightgrey;
+		}
+		.name {
+			font-weight: bold;
+		}
+		.dieRow {
+			-border: 1px solid black;
+			padding: $pad $pad*2;
+			text-align: center;
+			.value {
+				font-weight: bold;
+			}
+			.weight {
+				color: grey;
+			}
+
+		}
+		.weight-td {width: 40px;}
+	}
+}
+#roll {
+	div, table {margin: $pad 0;}
+	.history div:first-child {
+		font-weight: bold;
+		color: red;
+	}
+	.rollContainer {margin: $pad -1*$pad}
+	.rollBox {
+		display: inline-block;
+		border: 1px solid black;
+		padding: $pad;
+		margin: $pad;
+		.name, button {display: inline-block;}
+		.name {
+			font-weight: bold;
+			text-decoration: underline;
+		}
+		.roll {
+			display: block;
+			font-weight: bold;
+		}
+		.history {
+			display: block;
+			color: grey;
+			border: 1px solid grey;
+			padding: 2px;
+			min-height: 1em;
+			max-height: 3.8em;
+			overflow: auto;
+			div {display: block;}
+		}
+	}
+	.count {
+		color: grey;
+	}
+}
