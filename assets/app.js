@@ -53,6 +53,10 @@ class Die {
 		this.count++;
 		this.history.push({count:this.count,roll:this.roll});
 	}
+	clearHistory() {
+		this.count = 0;
+		this.history = [];
+	}
 }
 
 var app = new Vue({
@@ -108,6 +112,13 @@ var app = new Vue({
 			});
 			app.count++;
 			app.history.push({count:app.count, roll:rollSummary, total:rollTotal});
+		},
+		clearHistory: function() {
+			this.count = 0;
+			this.history = [];
+			app.dice.forEach(function(die) {
+				die.clearHistory();
+			});
 		}
 	}
 });

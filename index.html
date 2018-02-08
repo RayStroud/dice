@@ -64,7 +64,10 @@
 	</div>
 
 	<div id="roll" v-if="mode=='roll'">
-		<div><button v-on:click="rollDice(dice, count, history)">Roll All Dice</button></div>
+		<div>
+			<button v-on:click="rollDice(dice, count, history)">Roll All Dice</button>
+			<button v-on:click="clearHistory(dice)">Clear History</button>
+		</div>
 		<div class="rollContainer">
 			<div class="rollBox" v-for="die in dice">
 				<div class="name">{{die.name}}</div>
