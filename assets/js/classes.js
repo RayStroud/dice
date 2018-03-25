@@ -82,6 +82,30 @@ class Roller {
 		d6.addSide(new Side(6,1));
 		this.dice.push(d6);
 	}
+	addD20() {
+		let d20 = new Die('d20');
+		d20.addSide(new Side(1,1));
+		d20.addSide(new Side(2,1));
+		d20.addSide(new Side(3,1));
+		d20.addSide(new Side(4,1));
+		d20.addSide(new Side(5,1));
+		d20.addSide(new Side(6,1));
+		d20.addSide(new Side(7,1));
+		d20.addSide(new Side(8,1));
+		d20.addSide(new Side(9,1));
+		d20.addSide(new Side(10,1));
+		d20.addSide(new Side(11,1));
+		d20.addSide(new Side(12,1));
+		d20.addSide(new Side(13,1));
+		d20.addSide(new Side(14,1));
+		d20.addSide(new Side(15,1));
+		d20.addSide(new Side(16,1));
+		d20.addSide(new Side(17,1));
+		d20.addSide(new Side(18,1));
+		d20.addSide(new Side(19,1));
+		d20.addSide(new Side(20,1));
+		this.dice.push(d20);
+	}
 	newDie() {
 		this.dice.push(new Die());
 	}
