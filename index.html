@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html manifest="/offline.manifest">
 <head>
 	<title>Dice Maker</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -47,7 +47,7 @@
 			<button v-on:click="roller.clearHistory()">Clear History</button>
 		</div>
 		<div class="rollContainer">
-			<die-roll 
+			<die-roll
 				v-for="die in roller.dice"
 				v-bind:die="die">
 			</die-roll>
@@ -66,4 +66,3 @@
 <script src="assets/js/app.js"></script>
 </body>
 </html>
-
