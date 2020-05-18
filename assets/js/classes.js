@@ -106,6 +106,12 @@ class Roller {
 		d20.addSide(new Side(20,1));
 		this.dice.push(d20);
 	}
+	addD2() {
+		let d2 = new Die('d2');
+		d2.addSide(new Side(0,1));
+		d2.addSide(new Side(1,1));
+		this.dice.push(d2);
+	}
 	newDie() {
 		this.dice.push(new Die());
 	}
